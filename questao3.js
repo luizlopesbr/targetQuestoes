@@ -16,7 +16,15 @@ Array.max = function(array) {
     return Math.max.apply(Math, array);
 };
 
-let min = Array.min(faturamento);
+//remover os dias de faturamento de valor 0
+let semValorZero = [];
+for(i = 0; i < faturamento.length; i++){
+    if(faturamento[i] != 0){
+        semValorZero.push(faturamento[i]);
+    }
+}
+
+let min = Array.min(semValorZero);
 let max = Array.max(faturamento);
 
 //converter para o formato de moeda Brasileiro
@@ -34,11 +42,12 @@ for(i = 0; i < faturamento.length; i++){
 }
 
 //valor de faturamento médio
-let media = total / faturamento.length;
+let media = total / semValorZero.length;
+
 
 let cont = 0;
-for(i = 0; i < faturamento.length; i++){
-    if(faturamento[i] > media){
+for(i = 0; i < semValorZero.length; i++){
+    if(semValorZero[i] > media){
         cont = cont + 1;
     }
 }
